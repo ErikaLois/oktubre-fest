@@ -4,7 +4,7 @@ class MarcaCervezaRubia {
 	var property graduacion
 }
 
-class MarcaCervezaNegra {
+class MarcaCervezaNegra {	
 	var property contenidoDeLupulo
 	var property paisDeFabricacion
 	var property graduacionReglamentaria
@@ -17,7 +17,14 @@ class MarcaCervezaRoja inherits MarcaCervezaNegra {
 }
 
 class Jarra {
-	var property capacidadDeLaJarra 
-	var property marcaDeLaJarra
+	var property capacidad
+	var carpaQueLaSirvio 
+	var property marca
+	
 	method contenidoDeAlcohol() { return capacidad * (marca.graduacion() / 100)}
+	
+	method enQueCarpaSeSirvio(carpa) { carpaQueLaSirvio = carpa }
+	
+	method enQueCarpaSeSirvio() { return carpaQueLaSirvio }	
+	
 }

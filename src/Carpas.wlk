@@ -7,7 +7,7 @@ class Carpa {
 	const property marcaQueVende
 	var property personasAdentro = []
 	
-	method dejaIngresarA(persona) { return self.personasAdentro().sum() + 1 < limiteDePersonas and not persona.estaEbria()}
+	method dejaIngresarA(persona) { return self.personasAdentro().size() + 1 < limiteDePersonas and (not persona.estaEbria())}
 	
 	method ingresa(persona) { personasAdentro.add(persona)}
 	

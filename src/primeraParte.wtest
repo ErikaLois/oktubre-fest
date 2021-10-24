@@ -1,0 +1,33 @@
+import Carpas.*
+import Marcas.*
+import Personas.*
+
+describe "primera Parte" {
+	var cervezaRubia = new MarcaCervezaRubia(contenidoDeLupulo = 5, paisDeFabricacion = "Alemania", graduacion = 6)
+	var jarraRubia = new Jarra(capacidad = 0.5, enQueCarpaSeSirvio = 0, marca = cervezaRubia)
+	var pepe = new Persona(peso = 85, jarrasCompradas = [jarraRubia, jarraRubia], leGustaMusicaTradicional = true, nivelDeAguante = 9, paisDeOrigen = "Alemania")
+	var lola = new Persona(peso = 70, jarrasCompradas = [jarraRubia, jarraRubia], leGustaMusicaTradicional = true, nivelDeAguante = 4, paisDeOrigen = "Alemania")
+	var carpa1 = new Carpa(limiteDePersonas = 10, tieneBandaTradicional = true, marcaQueVende = cervezaRubia, personasAdentro = [pepe])
+	
+	test "contenido de alcohol de jarra rubia" {
+		
+		assert.equals(0.03, jarraRubia.contenidoDeAlcohol())
+	}
+		
+	test "total de alcohol de pepe" {
+		assert.equals(0.06, pepe.totalDeAlcoholIngerido())
+	}
+	
+	test "pepe no está ebrio" {
+		assert.that(not pepe.estaEbria())
+	}
+	
+	test "lola está ebria" {
+		assert.that(lola.estaEbria())
+	}
+	
+	test "a pepe le gusta la cerveza rubia"{
+		assert.that(pepe.leGustaLaMarca(cervezaRubia))
+	}
+	
+}

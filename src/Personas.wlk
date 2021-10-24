@@ -29,10 +29,6 @@ class Persona {
 	
 	method esPatriota() { return jarrasCompradas.all({j => j.paisDeFabricacion() == self.paisDeOrigen()})}
 	
-	method sonCompatibles(otraPersona) { 
-		return jarrasCompradas.
-	}
-	
 	method enQueCarpaLeSirvieron() {
 		return jarrasCompradas.map({j => j.enQueCarpaSeSirvio()})
 	}

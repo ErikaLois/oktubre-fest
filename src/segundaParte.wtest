@@ -1,0 +1,49 @@
+import Carpas.*
+import Marcas.*
+import Personas.*
+
+describe "test de oktubre fest" {
+	//marcas de cerveza
+	const cervezaRubia = new MarcaCervezaRubia(contenidoDeLupulo = 5, paisDeFabricacion = "Alemania", graduacion = 6)
+	const cervezaNegra = new MarcaCervezaNegra(contenidoDeLupulo = 3, paisDeFabricacion = "Republica Checa", graduacionReglamentaria = 8)
+	const cervezaRoja = new MarcaCervezaRoja(contenidoDeLupulo = 1, paisDeFabricacion = "Belgica", graduacionReglamentaria = 4)
+	
+		
+	//personas
+	var pepe = new Persona(peso = 85, jarrasCompradas = [], leGustaMusicaTradicional = true, nivelDeAguante = 9, paisDeOrigen = "Alemania")
+	var jose = new Persona(peso = 90, jarrasCompradas = [], leGustaMusicaTradicional = true, nivelDeAguante = 10, paisDeOrigen = "Alemania")
+	var juan = new Persona(peso = 95, jarrasCompradas = [], leGustaMusicaTradicional = false, nivelDeAguante = 11, paisDeOrigen = "Alemania")
+	var tito = new Persona(peso = 110, jarrasCompradas = [], leGustaMusicaTradicional = false, nivelDeAguante = 1, paisDeOrigen = "Republica Checa")
+	var lola = new Persona(peso = 65, jarrasCompradas = [], leGustaMusicaTradicional = true, nivelDeAguante = 4, paisDeOrigen = "Belgica")
+	
+	//Carpas
+	const carpa1 = new Carpa(limiteDePersonas = 10, tieneBandaTradicional = true, marcaQueVende = cervezaRubia, personasAdentro = [pepe, jose])
+	const carpa2 = new Carpa(limiteDePersonas = 5, tieneBandaTradicional = false, marcaQueVende = cervezaNegra, personasAdentro = [juan, tito])
+	const carpa3 = new Carpa(limiteDePersonas = 4, tieneBandaTradicional = true, marcaQueVende = cervezaRoja, personasAdentro = [pepe, jose, lola])
+	
+	//jarras
+	const jarraRubia = new Jarra(capacidad = 0.5, marca = cervezaRubia)
+	const jarraRoja = new Jarra(capacidad = 0.5, marca = cervezaRoja)
+	const jarraNegra = new Jarra(capacidad = 0.5, marca = cervezaNegra)
+
+	test "lola quiere entrar a la carpa 1" {
+		assert.that(lola.quiereEntrar(carpa1))
+	}
+	
+	test "tito no quiere entrar a la carpa 1" {
+		assert.that(not tito.quiereEntrar(carpa1))
+	}
+	
+	test "carpa2 no deja ingresar a Tito porque está ebrio" {
+		tito.agregarJarra(jarraRubia)
+		tito.agregarJarra(jarraNegra)
+		tito.agregarJarra(jarraRoja)
+		tito.agregarJarra(jarraRubia)
+		
+		assert.equals([jarraRubia,jarraNegra, jarraRoja, jarraRubia], tito.jarrasCompradas())
+		assert.that(tito.estaEbria())
+		assert.notThat(carpa2.dejaIngresarA(tito))
+	}
+	
+	
+}
