@@ -18,7 +18,7 @@ class Persona {
 		return self.leGustaLaMarca(carpa.marcaQueVende()) and leGustaMusicaTradicional == carpa.tieneBandaTradicional()
 	}
 	
-	method puedeIngresarA(carpa) { return self.quiereEntrar(carpa) and carpa.dejaIngregar(self)}
+	method puedeIngresarA(carpa) { return self.quiereEntrar(carpa) and carpa.dejaIngresarA(self)}
 	
 	method ingresarA(carpa) { 
 		if (self.puedeIngresarA(carpa)) {

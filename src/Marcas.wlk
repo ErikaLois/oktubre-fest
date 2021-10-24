@@ -27,4 +27,6 @@ class Jarra {
 	
 	method enQueCarpaSeSirvio() { return carpaQueLaSirvio }	
 	
+	method paisDeFabricacion() { return marca.paisDeFabricacion() }
+	
 }

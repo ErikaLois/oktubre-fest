@@ -14,7 +14,7 @@ class Carpa {
 	method servirJarraA(cap, persona) { 
 		const jarra = new Jarra(capacidad = cap, marca = self.marcaQueVende())
 		
-		if (personasAdentro.find({ p => persona})) {persona.agregarJarra(jarra); jarra.enQueCarpaSeSirvio(self)}
+		if (personasAdentro.contains(persona)) {persona.agregarJarra(jarra); jarra.enQueCarpaSeSirvio(self)}
 		else self.error("La persona no está en la carpa")
 	}
 	

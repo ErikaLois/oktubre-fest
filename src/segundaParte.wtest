@@ -22,9 +22,9 @@ describe "test de oktubre fest" {
 	const carpa3 = new Carpa(limiteDePersonas = 4, tieneBandaTradicional = true, marcaQueVende = cervezaRoja, personasAdentro = [pepe, jose, lola])
 	
 	//jarras
-	const jarraRubia = new Jarra(capacidad = 0.5, marca = cervezaRubia)
-	const jarraRoja = new Jarra(capacidad = 0.5, marca = cervezaRoja)
-	const jarraNegra = new Jarra(capacidad = 0.5, marca = cervezaNegra)
+	var jarraRubia = new Jarra(capacidad = 0.5, carpaQueLaSirvio = null, marca = cervezaRubia)
+	var jarraRoja = new Jarra(capacidad = 0.5, carpaQueLaSirvio = null, marca = cervezaRoja)
+	var jarraNegra = new Jarra(capacidad = 0.5, carpaQueLaSirvio = null, marca = cervezaNegra)
 
 	test "lola quiere entrar a la carpa 1" {
 		assert.that(lola.quiereEntrar(carpa1))
@@ -45,5 +45,26 @@ describe "test de oktubre fest" {
 		assert.notThat(carpa2.dejaIngresarA(tito))
 	}
 	
+	test "Lola puede entrar a la carpa 1" {
+		assert.that(lola.puedeIngresarA(carpa1))
+	}
 	
+	test "Lola ingresa a la carpa 1" {
+		lola.ingresarA(carpa1)
+		assert.equals([pepe, jose, lola], carpa1.personasAdentro())
+	}
+	
+	test "Servirle una jarra Rubia a Lola" {
+		lola.ingresarA(carpa1)
+		carpa1.servirJarraA(1, lola)
+		//assert.equals(carpa1, jarraRubia.enQueCarpaSeSirvio())
+		assert.equals([jarraRubia], lola.jarrasCompradas())
+	}
+	
+	test "jose es patriota" {
+		jose.agregarJarra(jarraRubia)
+		jose.agregarJarra(jarraRubia)
+		jose.agregarJarra(jarraRubia)
+		assert.that(jose.esPatriota())
+	}
 }
