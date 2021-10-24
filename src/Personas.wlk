@@ -28,6 +28,14 @@ class Persona {
 	method agregarJarra(jarra) { jarrasCompradas.add(jarra) }
 	
 	method esPatriota() { return jarrasCompradas.all({j => j.paisDeFabricacion() == self.paisDeOrigen()})}
+	
+	method sonCompatibles(otraPersona) { 
+		return jarrasCompradas.
+	}
+	
+	method enQueCarpaLeSirvieron() {
+		return jarrasCompradas.map({j => j.enQueCarpaSeSirvio()})
+	}
 }
 
 class PersonaBelga inherits Persona {

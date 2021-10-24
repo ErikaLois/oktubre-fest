@@ -12,12 +12,23 @@ class Carpa {
 	method ingresa(persona) { personasAdentro.add(persona)}
 	
 	method servirJarraA(cap, persona) { 
-		const jarra = new Jarra(capacidadDeLaJarra = cap, marcaDeLaJarra = self.marcaQueVende())
+		const jarra = new Jarra(capacidad = cap, marca = self.marcaQueVende())
 		
-		if (personasAdentro.find({ p => persona})) {persona.agregarJarra(jarra)}
+		if (personasAdentro.find({ p => persona})) {persona.agregarJarra(jarra); jarra.enQueCarpaSeSirvio(self)}
 		else self.error("La persona no está en la carpa")
 	}
 	
+	method ebriosEmpedernidos() {
+		return personasAdentro.filter({ p => p.estaEbria().jarrasCompradas().capacidad() >= 1}).sum()
+	}
+	
+	method esHomogenea() {
+		return personasAdentro.all({p => p.paisDeOrigen() == personasAdentro.first()})
+	}
+	
+	method noTienenCerveza() {
+		return personasAdentro.filter({ p => p.enQueCarpaLeSirvieron() != self})
+	}
 }
 
 
